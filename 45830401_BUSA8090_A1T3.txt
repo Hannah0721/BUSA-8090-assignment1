@@ -1,0 +1,6 @@
+Question 1
+a.mysql -u awkologist -p compbiol -e 'select * from expression' > ~/Question_1a.txtb. mysql -u awkologist -p compbiol -e 'select * from annotation' > ~/Question_1b.txtc.mysql -u awkologist -p compbiol -e 'select a.gene, a.function, e.expr_valuefrom annotation a inner join expression e on a.gene = e.gene ;'d.mysql -u awkologist -p compbiol -e 'select distinct a.metabolism from annotation a inner join annotation b on a.metabolism = b.metabolism where a.gene <>b.gene;'Question 2
+ 
+(Mysql code)a.select m.LastName, m.FirstName from Member m where m.Coach is NULL;b.select  m.LastName, m.FirstName from Member m where m.JoinDate >='2010' and m.JoinDate <'2011';
+c.select distinct m.LastName, m.FirstName, m.MemberID from Member m inner join Entry e on e.MemberID=m.MemberID where not exists(select * from Entry e where e.MemberID= m.MemberID and e.Year=2014);
+d.select m.LastName, m.FirstName, m.MemberID from Member m where not exists ( select * from Entry e1 where not exists ( select * from Entry e2 where e2.MemberID = m.MemberID and e1.Year = e2.Year )) ;
